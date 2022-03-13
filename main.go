@@ -10,6 +10,7 @@ func main() {
 	// fmt.Println(PalindromNumber(1221))
 	// fmt.Println(RomanToInt("MCMXCIV"))
 	// fmt.Println(GetCommonPrefix([]string{"flaz", "flaow", "flaowesrs", "flaag"}))
+	fmt.Println(RemoveDuplicates([]int{0, 0, 1, 1, 1, 2, 2, 3, 3, 4}))
 }
 
 // TwoSum - nums содержит массив целозначныйх чисел, target число которое надо получить из суммы двух чисел в nums.
@@ -127,4 +128,22 @@ func IsValidBrackets(s string) bool {
 	}
 
 	return len(stack) == 0
+}
+
+// RemoveDuplicates - remove the duplicates in-place such that each unique element appears only once
+func RemoveDuplicates(nums []int) int {
+	l := len(nums)
+	if l <= 1 {
+		return l
+	}
+
+	j := 0
+	for i := 1; i < l; i++ {
+		if nums[j] != nums[i] {
+			j++
+			nums[j] = nums[i]
+		}
+	}
+
+	return j + 1
 }
