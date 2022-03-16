@@ -10,7 +10,8 @@ func main() {
 	// fmt.Println(PalindromNumber(1221))
 	// fmt.Println(RomanToInt("MCMXCIV"))
 	// fmt.Println(GetCommonPrefix([]string{"flaz", "flaow", "flaowesrs", "flaag"}))
-	fmt.Println(RemoveDuplicates([]int{0, 0, 1, 1, 1, 2, 2, 3, 3, 4}))
+	// fmt.Println(RemoveDuplicates([]int{0, 0, 1, 1, 1, 2, 2, 3, 3, 4}))
+	fmt.Println(RemoveElement([]int{0, 1, 2, 2, 3, 0, 4, 2}, 2))
 }
 
 // TwoSum - nums содержит массив целозначныйх чисел, target число которое надо получить из суммы двух чисел в nums.
@@ -146,4 +147,31 @@ func RemoveDuplicates(nums []int) int {
 	}
 
 	return j + 1
+}
+
+// RemoveElement - remove in place element in array
+func RemoveElement(nums []int, val int) int {
+	v := 0
+	for i := range nums {
+		if nums[i] != val {
+			v++
+		}
+	}
+
+	for i := 0; i < len(nums); i++ {
+		if i == v {
+			break
+		}
+
+		if nums[i] == val {
+			j := 1
+			for nums[i] == val {
+				nums[i] = nums[i+j]
+				nums[i+j] = val
+				j++
+			}
+		}
+	}
+
+	return v
 }
