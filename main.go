@@ -209,6 +209,7 @@ func StrStr(haystack string, needle string) int {
 	return res
 }
 
+// StrStr2 - return index of substring start
 func StrStr2(haystack string, needle string) int {
 	if haystack == needle || len(needle) < 1 {
 		return 0
@@ -223,4 +224,46 @@ func StrStr2(haystack string, needle string) int {
 	}
 
 	return -1
+}
+
+// LengthOfLongestSubstring - return len of longest substring, thanks cap
+func LengthOfLongestSubstring(s string) int {
+	if len(s) == 0 {
+		return 0
+	}
+
+	if len(s) == 1 {
+		return 1
+	}
+
+	var substrings [][]byte
+
+	l := len(s)
+	max := 0
+	for i := 0; i < l; i++ {
+		dict := make(map[byte]struct{})
+
+		var substr []byte
+		for j := i; j <= l; j++ {
+			if j == l {
+				substrings = append(substrings, substr)
+				break
+			}
+
+			if _, ok := dict[s[j]]; ok {
+				substrings = append(substrings, substr)
+				break
+			}
+
+			substr = append(substr, s[j])
+
+			dict[s[j]] = struct{}{}
+		}
+
+		if len(substrings[i]) > max {
+			max = len(substrings[i])
+		}
+	}
+
+	return max
 }
