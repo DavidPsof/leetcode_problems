@@ -193,7 +193,6 @@ func StrStr(haystack string, needle string) int {
 		if haystack[i] == needle[0] {
 			c := 0
 			for j := i; j < i+len(needle); j++ {
-				fmt.Println(j, c)
 				if j == len(haystack) || haystack[j] != needle[c] {
 					break
 				}
