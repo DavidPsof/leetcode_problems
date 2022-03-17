@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"strings"
 )
 
 // задачи с leetcode
@@ -11,7 +12,8 @@ func main() {
 	// fmt.Println(RomanToInt("MCMXCIV"))
 	// fmt.Println(GetCommonPrefix([]string{"flaz", "flaow", "flaowesrs", "flaag"}))
 	// fmt.Println(RemoveDuplicates([]int{0, 0, 1, 1, 1, 2, 2, 3, 3, 4}))
-	fmt.Println(RemoveElement([]int{0, 1, 2, 2, 3, 0, 4, 2}, 2))
+	// fmt.Println(RemoveElement([]int{0, 1, 2, 2, 3, 0, 4, 2}, 2))
+	fmt.Println(StrStr2("hello", "ll"))
 }
 
 // TwoSum - nums содержит массив целозначныйх чисел, target число которое надо получить из суммы двух чисел в nums.
@@ -174,4 +176,51 @@ func RemoveElement(nums []int, val int) int {
 	}
 
 	return v
+}
+
+// StrStr - return index of substring start
+func StrStr(haystack string, needle string) int {
+	if needle == "" {
+		return 0
+	}
+
+	if haystack == "" || len(haystack) < len(needle) {
+		return -1
+	}
+
+	res := -1
+	for i := range haystack {
+		if haystack[i] == needle[0] {
+			c := 0
+			for j := i; j < i+len(needle); j++ {
+				fmt.Println(j, c)
+				if j == len(haystack) || haystack[j] != needle[c] {
+					break
+				}
+
+				c++
+				if c == len(needle) {
+					return i
+				}
+			}
+		}
+	}
+
+	return res
+}
+
+func StrStr2(haystack string, needle string) int {
+	if haystack == needle || len(needle) < 1 {
+		return 0
+	}
+
+	split := strings.Split(haystack, needle)
+
+	fmt.Println(split)
+
+	if len(split[0]) < len(haystack) {
+		return len(split[0])
+	}
+
+	return -1
 }
