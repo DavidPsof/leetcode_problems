@@ -13,7 +13,7 @@ func main() {
 	// fmt.Println(GetCommonPrefix([]string{"flaz", "flaow", "flaowesrs", "flaag"}))
 	// fmt.Println(RemoveDuplicates([]int{0, 0, 1, 1, 1, 2, 2, 3, 3, 4}))
 	// fmt.Println(RemoveElement([]int{0, 1, 2, 2, 3, 0, 4, 2}, 2))
-	fmt.Println(StrStr2("hello", "ll"))
+	// fmt.Println(StrStr2("hello", "ll"))
 }
 
 // TwoSum - nums содержит массив целозначныйх чисел, target число которое надо получить из суммы двух чисел в nums.
@@ -265,4 +265,27 @@ func LengthOfLongestSubstring(s string) int {
 	}
 
 	return max
+}
+
+// SearchInsert - search int value in int array, if we cant find in array value then we will place where it should be. Return index.
+func SearchInsert(nums []int, target int) int {
+	if nums[0] > target {
+		return 0
+	}
+
+	for i := range nums {
+		if nums[i] == target {
+			return i
+		}
+
+		if i == len(nums)-1 {
+			return len(nums)
+		}
+
+		if nums[i] < target && target < nums[i+1] {
+			return i + 1
+		}
+	}
+
+	return 0
 }
