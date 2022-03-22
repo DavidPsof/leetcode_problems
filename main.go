@@ -13,7 +13,6 @@ func main() {
 	// fmt.Println(GetCommonPrefix([]string{"flaz", "flaow", "flaowesrs", "flaag"}))
 	// fmt.Println(RemoveDuplicates([]int{0, 0, 1, 1, 1, 2, 2, 3, 3, 4}))
 	// fmt.Println(RemoveElement([]int{0, 1, 2, 2, 3, 0, 4, 2}, 2))
-	// fmt.Println(StrStr2("hello", "ll"))
 }
 
 // TwoSum - nums содержит массив целозначныйх чисел, target число которое надо получить из суммы двух чисел в nums.
@@ -288,4 +287,28 @@ func SearchInsert(nums []int, target int) int {
 	}
 
 	return 0
+}
+
+// MaxSubArray - find max sum of subarray elements. Use Kodane's algth.
+func MaxSubArray(nums []int) int {
+	if len(nums) == 1 {
+		return nums[0]
+	}
+
+	max := func(a, b int) int {
+		if a > b {
+			return a
+		}
+
+		return b
+	}
+
+	cur := nums[0]
+	far := nums[0]
+	for i := 1; i < len(nums); i++ {
+		cur = max(nums[i], cur+nums[i])
+		far = max(far, cur)
+	}
+
+	return far
 }
