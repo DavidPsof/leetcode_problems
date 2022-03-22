@@ -1,6 +1,9 @@
 package main
 
-import "testing"
+import (
+	"reflect"
+	"testing"
+)
 
 func TestStrStr(t *testing.T) {
 	got := StrStr("hello", "ll")
@@ -43,6 +46,26 @@ func TestMaxSubArray(t *testing.T) {
 	for i := range tests {
 		res := MaxSubArray(tests[i].a)
 		if res != tests[i].exp {
+			t.Errorf("got %q, wanted %q", res, tests[i].exp)
+		}
+	}
+}
+
+func TestSummArrayView(t *testing.T) {
+	var tests = []struct {
+		a   []int
+		exp []int
+	}{
+		{[]int{1, 2, 3}, []int{1, 2, 4}},
+		{[]int{1, 2, 9}, []int{1, 3, 0}},
+		{[]int{1, 9, 9}, []int{2, 0, 0}},
+		{[]int{9, 9, 9}, []int{1, 0, 0, 0}},
+		{[]int{9, 8, 9}, []int{9, 9, 0}},
+	}
+
+	for i := range tests {
+		res := SummArrayView(tests[i].a)
+		if !reflect.DeepEqual(res, tests[i].exp) {
 			t.Errorf("got %q, wanted %q", res, tests[i].exp)
 		}
 	}
