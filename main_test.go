@@ -70,3 +70,22 @@ func TestSummArrayView(t *testing.T) {
 		}
 	}
 }
+
+func TestClimbStairs(t *testing.T) {
+	var tests = []struct {
+		a   int
+		exp int
+	}{
+		{1, 1},
+		{2, 2},
+		{3, 3},
+		{4, 5},
+	}
+
+	for i := range tests {
+		res := СlimbStairs(tests[i].a)
+		if res != tests[i].exp {
+			t.Errorf("got %d, wanted %d", res, tests[i].exp)
+		}
+	}
+}

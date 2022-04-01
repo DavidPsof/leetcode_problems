@@ -336,3 +336,21 @@ func SummArrayView(digits []int) []int {
 	fmt.Println(digits)
 	return digits
 }
+
+// СlimbStairs - returns the number of options for passing a ladder of n steps
+func СlimbStairs(n int) int {
+	if n == 2 || n == 1 {
+		return n
+	}
+
+	res := 3
+	prev := 2
+	for i := 3; i < n; i++ {
+		fmt.Println(res)
+		tmp := res
+		res = res + prev
+		prev = tmp
+	}
+
+	return res
+}
