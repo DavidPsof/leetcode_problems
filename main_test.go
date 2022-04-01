@@ -89,3 +89,22 @@ func TestClimbStairs(t *testing.T) {
 		}
 	}
 }
+
+func TestMySqrt(t *testing.T) {
+	var tests = []struct {
+		a   int
+		exp int
+	}{
+		{1, 1},
+		{4, 2},
+		{9, 3},
+		{81, 9},
+	}
+
+	for i := range tests {
+		res := MySqrt(tests[i].a)
+		if res != tests[i].exp {
+			t.Errorf("got %d, wanted %d", res, tests[i].exp)
+		}
+	}
+}
