@@ -369,3 +369,54 @@ func MySqrt(x int) int {
 
 	return l - 1
 }
+
+type ListNode struct {
+	Val  int
+	Next *ListNode
+}
+
+// DeleteDuplicates - delete duplicates from linked list
+func DeleteDuplicates(head *ListNode) *ListNode {
+	if head == nil || head.Next == nil {
+		return head
+	}
+
+	iter := head
+	for iter != nil {
+		c := true
+
+		if iter.Next != nil {
+			printList(head)
+			fmt.Println()
+			if iter.Next.Val == iter.Val {
+				iter.Next = iter.Next.Next
+				c = false
+			}
+		}
+
+		if c {
+			iter = iter.Next
+		}
+	}
+
+	printList(head)
+
+	return head
+}
+
+func Push(i int, res *ListNode) *ListNode {
+	node := ListNode{
+		i,
+		res,
+	}
+
+	res = &node
+	return res
+}
+
+func printList(head *ListNode) {
+	for head != nil {
+		fmt.Println(head.Val)
+		head = head.Next
+	}
+}

@@ -108,3 +108,35 @@ func TestMySqrt(t *testing.T) {
 		}
 	}
 }
+
+func TestDeleteDuplicates(t *testing.T) {
+	inputIntArr := []int{1, 1, 2, 3, 3}
+	exIntArr := []int{1, 2, 3}
+
+	var input *ListNode
+	var ex *ListNode
+	for i := len(inputIntArr) - 1; i >= 0; i-- {
+		input = Push(inputIntArr[i], input)
+	}
+
+	for i := len(exIntArr) - 1; i >= 0; i-- {
+		ex = Push(exIntArr[i], ex)
+	}
+
+	var tests = []struct {
+		a   *ListNode
+		exp *ListNode
+	}{
+		{input, ex},
+	}
+
+	for i := range tests {
+		res := DeleteDuplicates(tests[i].a)
+		if res != tests[i].exp {
+			t.Errorf("got %v, wanted %v", res, tests[i].exp)
+			printList(tests[i].exp)
+			printList(res)
+		}
+	}
+
+}
