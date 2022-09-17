@@ -1,0 +1,26 @@
+networks:
+  LPA:
+    external: true
+
+services:
+  app:
+    container_name: backend
+    build: .
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./backend:/build
+    links:
+      - postgres
+    networks:
+      - LPA
+
+  postgres:
+    container_name: postgres
+    image: postgres
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_PASSWORD: example
+    networks:
+      - LPA
