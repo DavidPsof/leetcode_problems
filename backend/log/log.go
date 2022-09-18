@@ -15,7 +15,7 @@ func InitLog(conf config.LogSettings) {
 	}
 
 	if conf.LogInFile {
-		file, err := os.Open(conf.LogFileName)
+		file, err := os.OpenFile(conf.LogFileName, os.O_APPEND|os.O_WRONLY, os.ModeAppend)
 		if err != nil {
 			file, err = os.Create(conf.LogFileName)
 			if err != nil {
