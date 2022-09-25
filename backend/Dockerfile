@@ -5,11 +5,12 @@ ENV CGO_ENABLED=0\
     GOARCH=amd64
 
 RUN mkdir /app
+RUN mkdir /app/backend
 
-ADD ./backend /app/
+ADD . /app/backend
 
-WORKDIR /app
+WORKDIR /app/backend
 
 RUN go build -o main .
 
-CMD ["/app/main"]
+CMD ["/app/backend/main"]

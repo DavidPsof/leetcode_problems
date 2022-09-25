@@ -3,15 +3,27 @@ networks:
     external: true
 
 services:
-  app:
+  app_backend:
     container_name: backend
-    build: .
+    build: ./backend
     ports:
       - "8080:8080"
     volumes:
       - ./backend:/build
     links:
       - postgres
+    networks:
+      - LPA
+
+  app_frontend:
+    container_name: frontend
+    build: ./frontend
+    command: npm start
+    ports:
+      - "3000:3000"
+    environment:
+      NODE_ENV: development
+      DEBUG: nodejs-docker-express:*
     networks:
       - LPA
 
