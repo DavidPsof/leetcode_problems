@@ -3,12 +3,23 @@ package http
 import (
 	"fmt"
 	"github.com/DavidPsof/leetcode_problems/backend/pkg/api"
+	"github.com/DavidPsof/leetcode_problems/backend/services"
 	"github.com/gofiber/fiber/v2"
 	log "github.com/sirupsen/logrus"
 	"net/http"
 )
 
-func Ping() fiber.Handler {
+type Handler struct {
+	service *services.Service
+}
+
+func NewHandler(s *services.Service) *Handler {
+	return &Handler{
+		service: s,
+	}
+}
+
+func (h *Handler) Ping() fiber.Handler {
 	return func(ctx *fiber.Ctx) error {
 
 		if err := ctx.JSON(api.Response{

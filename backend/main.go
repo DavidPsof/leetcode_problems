@@ -14,6 +14,10 @@ import (
 func main() {
 	defer recovery()
 
+	// TODO: отрефакторить recovery
+	// TODO: инициировать контекст для API
+	// TODO: добавить режим отладки
+
 	configPathParam := flag.String("config", "conf.env", "path to config file")
 	flag.Parse()
 
@@ -25,7 +29,7 @@ func main() {
 
 	s, err := server.NewServer(*conf)
 	if err != nil {
-		log.Error(err)
+		log.Fatal(err)
 	}
 
 	s.Run()

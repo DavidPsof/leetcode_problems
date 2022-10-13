@@ -5,6 +5,7 @@ import "github.com/spf13/viper"
 type Conf struct {
 	HttpServerConfig `mapstructure:",squash"`
 	PostgresConfig   `mapstructure:",squash"`
+	MinioConfig      `mapstructure:",squash"`
 	LogSettings      `mapstructure:",squash"`
 }
 
@@ -25,6 +26,12 @@ type PostgresConfig struct {
 	ModeSSL      string `mapstructure:"POSTGRES_SSL_MODE,required"`
 	MaxOpenConns uint   `mapstructure:"POSTGRES_MAX_OPEN_CONNS" envDefault:"10"`
 	MaxIdleConns uint   `mapstructure:"POSTGRES_MAX_IDLE_CONNS" envDefault:"5"`
+}
+
+type MinioConfig struct {
+	Endpoint        string `mapstructure:"MINIO_ENDPOINT,required"`
+	AccessKeyID     string `mapstructure:"MINIO_ACCESS_KEY_ID,required"`
+	SecretAccessKey string `mapstructure:"MINIO_SECRET_ACCESS_KEY,required"`
 }
 
 type LogSettings struct {
